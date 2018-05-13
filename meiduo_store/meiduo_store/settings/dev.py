@@ -33,6 +33,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=e_9cie*@1e3m6e_3%q8kpswm@0l=r0za^^h+9axve-2gkvvni'
+# SECRET_KEY = 'r8ag9js39ql7z*saw8x8zn-vto1g_i*5+^(7@d)!n7o$0(o4=y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'verifications.apps.VerificationsConfig'
 
 ]
 
@@ -160,6 +162,13 @@ CACHES = {
         }
     },
     "session": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    "verify_codes": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1/1",
         "OPTIONS": {

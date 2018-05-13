@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 from django.contrib.auth.models import AbstractUser
-
+# django提供了验证权限模型类,自带一些常用字段
 class User(AbstractUser):
     """
     用户信息

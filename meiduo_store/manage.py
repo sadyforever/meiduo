@@ -2,8 +2,8 @@
 import os
 import sys
 
-if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "meiduo_store.settings")
+if __name__ == "__main__":                          # 更改了setting文件的位置manager找不到了,需要配置位置
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "meiduo_store.settings.dev")
     try:
         from django.core.management import execute_from_command_line
     except ImportError:
