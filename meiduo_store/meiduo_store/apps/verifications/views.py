@@ -10,12 +10,13 @@ from django.http.response import HttpResponse
 # 这个就报错,第二个没事,右键设置文件夹为源 as source
 # from meiduo_store.meiduo_store.libs.captcha.captcha import captcha
 from meiduo_store.libs.captcha.captcha import captcha
+from users.models import User
 from verifications import serializers
 from celery_tasks.sms.tasks import send_sms_code
 from . import constants
 # Create your views here.
 
-
+# 图片验证码
 class ImageCodeView(APIView):
     """
     图片验证码
@@ -33,7 +34,7 @@ class ImageCodeView(APIView):
 
 
 
-
+# 短信验证码
 class SMSCodeView(GenericAPIView):   # 需要用到get_serializer方法
     serializer_class = serializers.CheckImageCodeSerialzier
 
@@ -72,4 +73,7 @@ class SMSCodeView(GenericAPIView):   # 需要用到get_serializer方法
         print(sms_code)
         # 返回
         return Response({'message': 'OK'})
+
+
+
 

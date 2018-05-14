@@ -10,4 +10,5 @@ thing = '新内容说明'
 2.倒计时卡顿
 视图阻塞了,使用celery异步框架工具,多线程或协程的方式,把发短信的事件委托出去
 真正执行任务的是celery中的worker,worker不断出任务队列中拿出委托的任务
+celery需要启动,main文件启动,config配置,执行的任务交给sms文件的tasks
 '''
