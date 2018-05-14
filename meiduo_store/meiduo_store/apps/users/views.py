@@ -3,9 +3,11 @@ from django.shortcuts import render
 # Create your views here.
 
 # 判断用户名或手机是否存在
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from users import serializers
 from users.models import User
 
 # 判断用户名是否存在
@@ -43,3 +45,14 @@ class MobileCountView(APIView):
         }
 
         return Response(data)
+
+
+
+class UserView(CreateAPIView):
+    """
+    用户注册
+    """
+    serializer_class = serializers.CreateUserSerializer
+
+
+
