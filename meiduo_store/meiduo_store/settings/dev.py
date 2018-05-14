@@ -68,7 +68,7 @@ AUTH_USER_MODEL = 'users.User'
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',    # 跨域CORS验证,中间件,必须放在第一个位置
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -256,7 +256,7 @@ REST_FRAMEWORK = {
 
 
 
-# CORS
+# CORS白名单设置
 CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8080',
     'localhost:8080',

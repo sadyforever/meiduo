@@ -12,3 +12,27 @@ thing = '新内容说明'
 真正执行任务的是celery中的worker,worker不断出任务队列中拿出委托的任务
 celery需要启动,main文件启动,config配置,执行的任务交给sms文件的tasks
 '''
+
+
+'''
+3.JWT: json web token   判断用户登录,类cookie
+session需要储存在服务器上,基于cookie来使用,同源不能跨域,比较局限
+
+token机制,使用JWT,跨域
+由三部分组成: header存放加密算法
+            playload一些信息
+            signature 结合只有后端有的secret_key,结合加密算法,处理playload的信息然后放在这
+            secret_key只有后端有,所以请求中带上去,后端通过secret_key来解密第三部分,和第二部分是否
+            一致,来判断是否被篡改,来判断用户,不需要再服务器存储了
+其实是因为静态服务器是一个域名,而html文件中请求的地址又是另一个域名,当是post请求的时候,
+需要csrf验证,并且必须是同源,不满足需求,所以出现JWT这种token机制,跨域就涉及到安全问题,
+设置白名单CORS验证
+
+'''
+
+
+'''
+4.CORS验证  类csrf验证
+针对跨域请求出现的设置白名单,配置见讲义
+就算设置了跨域白名单,cookie也不可能支持跨域
+'''
