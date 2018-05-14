@@ -11,7 +11,7 @@ from django.http.response import HttpResponse
 # from meiduo_store.meiduo_store.libs.captcha.captcha import captcha
 from meiduo_store.libs.captcha.captcha import captcha
 from verifications import serializers
-
+from celery_tasks.sms.tasks import send_sms_code
 from . import constants
 # Create your views here.
 
@@ -64,12 +64,12 @@ class SMSCodeView(GenericAPIView):   # 需要用到get_serializer方法
         pl.execute()
 
         # 发送短信
-        ccp = CCP()
-        time = str(constants.SMS_CODE_REDIS_EXPIRES / 60)
-        ccp.send_template_sms(mobile, [sms_code, time], constants.SMS_CODE_TEMP_ID)
+        # ccp = CCP()
+        # time = str(constants.SMS_CODE_REDIS_EXPIRES / 60)
+        # ccp.send_template_sms(mobile, [sms_code, time], constants.SMS_CODE_TEMP_ID)
         # 使用celery发布异步任务
-        # send_sms_code.delay(mobile, sms_code)
-        # print(sms_code)
+        send_sms_code.delay(mobile, sms_code)
+        print(sms_code)
         # 返回
         return Response({'message': 'OK'})
 
