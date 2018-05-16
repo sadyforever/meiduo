@@ -47,12 +47,16 @@ class MobileCountView(APIView):
         return Response(data)
 
 
-
+# 注册创建用户
 class UserView(CreateAPIView):
     """
     用户注册
     """
     serializer_class = serializers.CreateUserSerializer
+
+
+# 登录
+
 
 
 

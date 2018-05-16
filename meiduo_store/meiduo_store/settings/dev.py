@@ -18,6 +18,8 @@ import os
 
 # 虽然settings文件改变了位置,但是子应用的位置也改变了,都放到原来位置的下一级目录了,所以 BASE_DIR 还是能定位到apps
 # 即dev 绝对路径的 ../../
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 但是因为现在子应用是在apps中,把查找路径优先设置成在apps中,注册的时候寻找路径
 # 添加导包路径
@@ -38,7 +40,7 @@ SECRET_KEY = '=e_9cie*@1e3m6e_3%q8kpswm@0l=r0za^^h+9axve-2gkvvni'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['api.meiduo.site']
 
 
 # Application definition
@@ -247,6 +249,18 @@ LOGGING = {
 REST_FRAMEWORK = {
     # 异常处理
     'EXCEPTION_HANDLER': 'meiduo_store.utils.exceptions.exception_handler',
+    # JWT配置
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+# JWT_EXPIRATION_DELTA 指明token的有效期
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    # JWT的认证,把返回结果认证进去
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response_payload_handler',
 }
 
 
@@ -263,3 +277,11 @@ CORS_ORIGIN_WHITELIST = (
     'www.meiduo.site:8080'
 )
 CORS_ALLOW_CREDENTIALS = True # 允许携带cookie
+
+
+
+
+# 添加用户名和手机号的支持,让django使用自定义的身份认证
+AUTHENTICATION_BACKENDS = [
+    'users.utils.UsernameMobileAuthBackend',
+]
