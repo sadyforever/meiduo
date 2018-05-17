@@ -48,10 +48,12 @@ class CheckImageCodeSerialzier(serializers.Serializer):
         # 有1个context参数包含request,formet,view
         # 因为mobile是在路由中,拿出来通过context的view,在视图中拿出来
         # request后边的参数是通过kwargs拿出来
-        mobile = self.context['view'].kwargs['mobile']
-        send_flag = redis_conn.get('send_flag_%s' % mobile)
-        if send_flag:
-            raise serializers.ValidationError('发送短信次数过于频繁')
-            # 如果redis中有电话号了,说明之前发过短信了
+        mobile = self.context['view'].kwargs.get('mobile')
+        # 取手机如果取不到手机,说明路径参数中没有mobile这一项,直接return就行说明验证通过
+        if mobile:
+            send_flag = redis_conn.get('send_flag_%s' % mobile)
+            if send_flag:
+                raise serializers.ValidationError('发送短信次数过于频繁')
+                # 如果redis中有电话号了,说明之前发过短信了
         return attrs
         # 验证通过返回attrs
