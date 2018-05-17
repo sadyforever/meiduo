@@ -8,7 +8,8 @@ from django.shortcuts import render
 # 判断用户名或手机是否存在
 from django_redis import get_redis_connection
 from rest_framework import status, mixins
-from rest_framework.generics import CreateAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -176,4 +177,33 @@ class PasswordView(mixins.UpdateModelMixin, GenericAPIView):
 
     def post(self, request, pk):
         return self.update(request, pk)
+
+
+                    # 用户详情,继承详情展示
+class UserDetailView(RetrieveAPIView):
+    """
+    用户详情
+    """
+    serializer_class = serializers.UserDetailSerializer
+    # 使用DRF的权限
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
+
+
+
+
+
+class EmailView(CreateAPIView):
+    """
+    保存用户邮箱
+    """
+    permission_classes = [IsAuthenticated]
+
+    # 为了是视图的create方法在对序列化器进行save操作时执行序列化器的update方法，更新user的email属性
+    # 所以重写get_serializer方法，在构造序列化器时将请求的user对象传入
+    # 注意：在视图中，可以通过视图对象self中的request属性获取请求对象
+    def get_serializer(self, *args, **kwargs):
+        return serializers.EmailSerializer(self.request.user, data=self.request.data)
 
