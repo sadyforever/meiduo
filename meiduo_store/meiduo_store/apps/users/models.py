@@ -90,3 +90,15 @@ class User(AbstractUser):
                 return False
             else:
                 return True
+
+
+    # 生成验证邮箱的链接
+    def generate_verify_email_url(self):
+        """
+        生成验证邮箱的url
+        """
+        serializer = TJWSSerializer(settings.SECRET_KEY, expires_in=300)
+        data = {'user_id': self.id, 'email': self.email}
+        token = serializer.dumps(data).decode()
+        verify_url = 'http://www.meiduo.site:8080/success_verify_email.html?token=' + token
+        return verify_url

@@ -194,16 +194,27 @@ class UserDetailView(RetrieveAPIView):
 
 
 
-
+# 点击保存email,并且发送激活邮件
 class EmailView(CreateAPIView):
     """
     保存用户邮箱
     """
+    # DRF身份认证,header中带上来
     permission_classes = [IsAuthenticated]
 
     # 为了是视图的create方法在对序列化器进行save操作时执行序列化器的update方法，更新user的email属性
     # 所以重写get_serializer方法，在构造序列化器时将请求的user对象传入
     # 注意：在视图中，可以通过视图对象self中的request属性获取请求对象
+
+    # TODO 看一下视频
+    # 为什么这么用: 业务是只更新一个字段email,在注册的时候可以是空的,但是访问用户中心这个页面,并且上传邮箱的时候
+    # 点击之后属于访问这个接口,这个接口的目的是更新用户的数据库,然后把用户返回去再展示信息
+    # 所以属于局部刷新,前端是post请求
+    # 直接继承CreateAPIView,其中提供支持post方法
+    # 通过get_serializer方法,直接获取序列化器对象
+    # 参数(序列化,data=反序列化)
+    # 反序列化验证只验证email字段
+    # 序列化把用户传回去
     def get_serializer(self, *args, **kwargs):
         return serializers.EmailSerializer(self.request.user, data=self.request.data)
 
