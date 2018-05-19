@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 from celery_tasks.main import app
+# from meiduo_store.settings import dev
+# from meiduo_store import settings
 
 
 @app.task(name='send_verify_email')
@@ -12,6 +14,8 @@ def send_verify_email(to_email, verify_url):
     :param verify_url: 验证链接
     :return: None
     """
+    # EMAIL_FROM = 'python<itcast27@163.com>'
+
     subject = "美多商城邮箱验证"
     html_message = '<p>尊敬的用户您好！</p>' \
                    '<p>感谢您使用美多商城。</p>' \

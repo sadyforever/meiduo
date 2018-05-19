@@ -16,5 +16,8 @@ urlpatterns = [
     url(r'^accounts/(?P<account>\w{4,20})/password/token/$', views.PasswordTokenView.as_view()),  # 获取修改密码的token
     url(r'users/(?P<pk>\d+)/password/$',views.PasswordView.as_view()),
     url(r'user/$',views.UserDetailView.as_view()),
+
     url(r'^emails/$', views.EmailView.as_view()),
+    url(r'^emails/verification/$', views.VerifyEmailView.as_view()),  # 用户个人中心数据
+
 ]

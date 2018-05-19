@@ -102,3 +102,23 @@ class User(AbstractUser):
         token = serializer.dumps(data).decode()
         verify_url = 'http://www.meiduo.site:8080/success_verify_email.html?token=' + token
         return verify_url
+
+    @staticmethod
+    def check_verify_email_token(token):
+        """
+        检查验证邮件的token
+        """
+        serializer = TJWSSerializer(settings.SECRET_KEY, expires_in=300)
+        try:
+            data = serializer.loads(token)
+        except BadData:
+            return None
+        else:
+            email = data.get('email')
+            user_id = data.get('user_id')
+            try:
+                user = User.objects.get(id=user_id, email=email)
+            except User.DoesNotExist:
+                return None
+            else:
+                return user
