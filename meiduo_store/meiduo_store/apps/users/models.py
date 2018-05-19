@@ -14,7 +14,7 @@ SEND_SMS_CODE_TOKEN_EXIPIRES = 300
 # 修改密码token的有效期
 SET_PASSWORD_TOKEN_EXPIRES = 300
 
-
+        # django内置的auth用户权限验证的类
 class User(AbstractUser):
     """
     用户信息

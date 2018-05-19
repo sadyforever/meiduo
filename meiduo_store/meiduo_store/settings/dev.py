@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'users.apps.UsersConfig',
-    'verifications.apps.VerificationsConfig'
+    'verifications.apps.VerificationsConfig',
+    'areas.apps.AreasConfig',
 
 
 ]
