@@ -302,3 +302,13 @@ EMAIL_HOST_PASSWORD = 'sadypython27'
 
 #收件人看到的发件人
 EMAIL_FROM = '美多商城<a77045678@163.com>'
+
+
+
+# 省市区列表的缓存
+REST_FRAMEWORK_EXTENSIONS = {
+    # 缓存时间
+    'DEFAULT_CACHE_RESPONSE_TIMEOUT': 60 * 60,
+    # 缓存存储
+    'DEFAULT_USE_CACHE': 'default',
+}

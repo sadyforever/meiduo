@@ -7,6 +7,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from .models import Area
 from .serializers import AreaSerializer, SubAreaSerializer
+from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ from .serializers import AreaSerializer, SubAreaSerializer
 
 # 访问地址 GET /areas/
 #        GET /areas/210000/
-class AreasViewSet(ReadOnlyModelViewSet):
+class AreasViewSet(CacheResponseMixin,ReadOnlyModelViewSet):
     """
     行政区划信息
     """
