@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 import areas.urls
+import oauth.urls
 import users.urls
 import verifications.urls
 
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^',include(verifications.urls)),
     url(r'^',include(users.urls)),
     url(r'^',include(areas.urls)),
+    # url(r'^oauth/',include(oauth.urls)),
 ]

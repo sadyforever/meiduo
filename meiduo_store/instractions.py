@@ -36,3 +36,37 @@ token机制,使用JWT,跨域
 针对跨域请求出现的设置白名单,配置见讲义
 就算设置了跨域白名单,cookie也不可能支持跨域
 '''
+
+
+'''
+5.FastDFS分布式文件储存
+就是分布式存储文件和图片的工具
+由Traker集群(追踪变化) 和 Storage集群组成(存储)      
+由client操作
+'''
+
+
+'''
+6.docker:虚拟化
+一个容器,就是个虚拟机,可以安装镜像,但是性能各方面更强大
+始终用终端来操作,没有可视化窗口
+'''
+
+
+'''
+7.QQ登录
+核心: (1) 用户在QQ登录页登录,QQ给用户标识身份的 code, 然后执行回调callback,把code发给我们
+     (2) 我们用code访问QQ的服务器, QQ服务器给我们一个access_token
+     (3) 用access_token向QQ服务器要一个 open_id 用户的公开信息
+     
+     (4) 接下来跟QQ服务器就没关系了 , 如果我们有用户信息 就和QQ信息绑定, 没有就创建信息并绑定
+     
+urllib模块
+    urllib.parse.urlencode(query) 将query字典转换为url路径中的查询字符串
+    
+    urllib.parse.parse_qs(qs)  将qs查询字符串格式数据转换为python的字典
+    
+    urllib.request.urlopen(url, data=None)
+    发送http请求，如果data为None，发送GET请求，如果data不为None，发送POST请求
+    返回response响应对象，可以通过read()读取响应体数据，需要注意读取出的响应体数据为bytes类型 
+'''
