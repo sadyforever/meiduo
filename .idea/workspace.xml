@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48c076f9-a91a-4eb4-a5a7-7f806c37d511" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meiduo_store/scripts/goods_data.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meiduo_store/scripts/import_goods_data_to_db.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static_files/js/index.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/5176df91-e5b1-40dc-8a20-3d9a0dc8b4e2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/crons.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/meiduo.iml" afterPath="$PROJECT_DIR$/.idea/meiduo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meiduo_store/scripts/regenerate_index_html.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static_files/index.html" afterPath="$PROJECT_DIR$/static_files/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,21 +40,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="crons.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="crons.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="20" column="76" lean-forward="true" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
+            <state relative-caret-position="-835">
+              <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dev.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dev.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="214">
+              <caret line="76" column="6" lean-forward="true" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="regenerate_index_html.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/meiduo_store/scripts/regenerate_index_html.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="13" column="56" lean-forward="false" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -77,8 +76,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -88,7 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/users/migrations/serializers.py" />
         <option value="$PROJECT_DIR$/static_files/js/host.js" />
         <option value="$PROJECT_DIR$/static_files/register.html" />
         <option value="$PROJECT_DIR$/static_files/js/register.js" />
@@ -136,9 +134,10 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5176df91-e5b1-40dc-8a20-3d9a0dc8b4e2/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9f43a89e-e516-43dd-af36-aa5374d6eee6/console.sql" />
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/crons.py" />
-        <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py" />
         <option value="$PROJECT_DIR$/static_files/js/index.js" />
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py" />
+        <option value="$PROJECT_DIR$/meiduo_store/scripts/regenerate_index_html.py" />
+        <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py" />
       </list>
     </option>
   </component>
@@ -209,12 +208,6 @@
               <item name="meiduo" type="b2602c69:ProjectViewProjectNode" />
               <item name="meiduo" type="462c0819:PsiDirectoryNode" />
               <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="meiduo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="meiduo" type="462c0819:PsiDirectoryNode" />
-              <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
               <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -229,6 +222,14 @@
               <item name="meiduo" type="462c0819:PsiDirectoryNode" />
               <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
               <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="contents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="meiduo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="meiduo" type="462c0819:PsiDirectoryNode" />
+              <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
+              <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
               <item name="settings" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -237,6 +238,12 @@
               <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
               <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="meiduo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="meiduo" type="462c0819:PsiDirectoryNode" />
+              <item name="meiduo_store" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="meiduo" type="b2602c69:ProjectViewProjectNode" />
@@ -391,13 +398,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.virtualenvs/py3_django/lib/python3.6/site-packages/django/contrib/auth/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="155" column="8" lean-forward="false" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static_files/oauth_callback.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1610">
@@ -692,18 +692,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py">
+    <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="20" column="76" lean-forward="true" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
+        <state relative-caret-position="214">
+          <caret line="76" column="6" lean-forward="true" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py">
+    <entry file="file://$PROJECT_DIR$/meiduo_store/scripts/regenerate_index_html.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        <state relative-caret-position="312">
+          <caret line="13" column="56" lean-forward="false" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents/crons.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-835">
+          <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding />
         </state>
       </provider>

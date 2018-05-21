@@ -29,6 +29,12 @@ def generate_static_index_html():
     categories = OrderedDict()
     channels = GoodsChannel.objects.order_by('group_id', 'sequence')
     print(channels)
+    '''
+    <QuerySet [<GoodsChannel: 手机>, <GoodsChannel: 相机>, <GoodsChannel: 数码>, <GoodsChannel: 电脑>, <GoodsChannel: 办公>, <GoodsChannel:oodsChannel: 家居>, 
+    <GoodsChannel: 家具>, <GoodsChannel: 家装>, <GoodsChannel: 厨具>, <GoodsChannel: 男装>, <GoodsChannel: 女装>, <Good>, <GoodsChannel: 内衣>, <GoodsChannel: 女鞋>,
+     <GoodsChannel: 箱包>, <GoodsChannel: 钟表>, <GoodsChannel: 珠宝>, <GoodsChannel: 男鞋>, l: 运动>, '...(remaining elements truncated)...']>
+
+    '''
     for channel in channels:
         group_id = channel.group_id  # 当前组
 
