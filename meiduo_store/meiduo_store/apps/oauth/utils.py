@@ -4,8 +4,7 @@ from urllib.request import urlopen
 import logging
 import json
 
-# from .exceptions import QQAPIException
-from oauth.exceptions import QQAPIException
+from .exceptions import QQAPIException
 
 logger = logging.getLogger('django')
 
@@ -21,7 +20,6 @@ class OAuthQQ(object):
         self.redirect_url = redirect_url or settings.QQ_REDIRECT_URL
         self.state = state or settings.QQ_STATE
 
-    # 拼接第一次GET的QQ登录地址
     def generate_qq_login_url(self):
         """
         拼接用户QQ登录的链接地址
@@ -93,4 +91,17 @@ class OAuthQQ(object):
 
         openid = data.get('openid', None)
         return openid
+
+
+
+
+
+
+
+
+
+
+
+
+
 

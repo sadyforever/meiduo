@@ -1,14 +1,10 @@
-from django.conf import settings
 from django.db import models
-
-# Create your models here.
-
-
-from django.db import models
-from itsdangerous import BadData,TimedJSONWebSignatureSerializer as TJWSSerializer
-
 from meiduo_store.utils.models import BaseModel
-from oauth import constants
+from itsdangerous import TimedJSONWebSignatureSerializer as TJWSSerializer, BadData
+from django.conf import settings
+
+from . import constants
+# Create your models here.
 
 
 class OAuthQQUser(BaseModel):

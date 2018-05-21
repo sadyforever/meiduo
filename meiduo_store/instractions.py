@@ -48,7 +48,7 @@ token机制,使用JWT,跨域
 
 '''
 6.docker:虚拟化
-一个容器,就是个虚拟机,可以安装镜像,但是性能各方面更强大
+一个容器,就是个虚拟机,可以安装镜像,但是性能各方面更强大, 一些命令行看讲义
 始终用终端来操作,没有可视化窗口
 '''
 
@@ -69,4 +69,9 @@ urllib模块
     urllib.request.urlopen(url, data=None)
     发送http请求，如果data为None，发送GET请求，如果data不为None，发送POST请求
     返回response响应对象，可以通过read()读取响应体数据，需要注意读取出的响应体数据为bytes类型 
+'''
+
+
+'''
+8.CKEditor富文本编辑器
 '''

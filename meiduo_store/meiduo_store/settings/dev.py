@@ -40,7 +40,7 @@ SECRET_KEY = '=e_9cie*@1e3m6e_3%q8kpswm@0l=r0za^^h+9axve-2gkvvni'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['api.meiduo.site']
+ALLOWED_HOSTS = ['api.meiduo.site','127.0.0.1']
 
 
 # Application definition
@@ -56,13 +56,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'corsheaders',
+    'ckeditor',  # 富文本编辑器
+    'ckeditor_uploader',  # 富文本编辑器上传图片模块
+    'oauth.apps.OauthConfig',
     'users.apps.UsersConfig',
     'verifications.apps.VerificationsConfig',
     'areas.apps.AreasConfig',
     'goods.apps.GoodsConfig',
     'contents.apps.ContentsConfig',
-    'oauth.apps.OauthConfig',
+
+
 
 ]
 
@@ -277,7 +282,8 @@ JWT_AUTH = {
 CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8080',
     'localhost:8080',
-    'www.meiduo.site:8080'
+    'www.meiduo.site:8080',
+    'api.meiduo.site:8000'
 )
 CORS_ALLOW_CREDENTIALS = True # 允许携带cookie
 
@@ -321,3 +327,26 @@ REST_FRAMEWORK_EXTENSIONS = {
 QQ_APP_ID = '101474184'
 QQ_APP_KEY = 'c6ce949e04e12ecc909ae6a8b09b637c'
 QQ_REDIRECT_URL = 'http://www.meiduo.site:8080/oauth_callback.html'
+QQ_STATE = '/'
+
+
+
+# 修改django默认的文件储存,以后都是有FastDFS来储存
+# django文件存储
+DEFAULT_FILE_STORAGE = 'meiduo_store.utils.fastdfs.storage.FastDFSStorage'
+
+# FastDFS
+FDFS_BASE_URL = 'http://192.168.2.109:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
+FDFS_CLIENT_CONF = os.path.join(BASE_DIR, 'utils/fastdfs/client.conf')
+
+
+
+# 富文本编辑器ckeditor配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',  # 工具条功能
+        'height': 300,  # 编辑器高度
+        # 'width': 300,  # 编辑器宽
+    },
+}
+CKEDITOR_UPLOAD_PATH = ''  # 上传图片保存路径，使用了FastDFS，所以此处设为''

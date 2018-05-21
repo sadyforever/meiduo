@@ -1,17 +1,17 @@
 from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework_jwt.settings import api_settings
+from rest_framework.generics import GenericAPIView
+
+from .utils import OAuthQQ
+from .exceptions import QQAPIException
+from .models import OAuthQQUser
+from .serializers import OAuthQQUserSerializer
+
 
 # Create your views here.
-from rest_framework import status
-from rest_framework.generics import GenericAPIView
-from rest_framework.response import Response
-
-from rest_framework.views import APIView
-from rest_framework_jwt.settings import api_settings
-
-from oauth.exceptions import QQAPIException
-from oauth.models import OAuthQQUser
-from oauth.serializers import OAuthQQUserSerializer
-from oauth.utils import OAuthQQ
 
 
 class OAuthQQURLView(APIView):
@@ -34,10 +34,6 @@ class OAuthQQURLView(APIView):
         return Response({"oauth_url": login_url})
 
 
-
-
-
-
 class OAuthQQUserView(GenericAPIView):
     """
     获取QQ用户对应的美多商城用户
@@ -47,6 +43,7 @@ class OAuthQQUserView(GenericAPIView):
     def get(self, request):
         # 提取code参数
         code = request.query_params.get('code')
+        print(code)
         if not code:
             return Response({"message": "缺少code"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -70,7 +67,6 @@ class OAuthQQUserView(GenericAPIView):
         else:
             # 如果已经绑定，直接生成登录凭证 JWT token，并返回
             # 手动为用户生成JWT token
-            # 对象.外键 这个open_id对应的user是谁
             user = oauth_user.user
 
             jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -104,3 +100,27 @@ class OAuthQQUserView(GenericAPIView):
             'username': user.username,
             'user_id': user.id
         })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
