@@ -8,7 +8,8 @@ from rest_framework_extensions.cache.mixins import ListCacheResponseMixin
 
 
 from goods.models import SKU
-from goods.serializers import SKUSerializer
+from goods.serializers import SKUSerializer, SKUIndexSerializer
+
 
 # GET /categories/(?P<category_id>\d+)/hotsk
 class HotSKUListView(ListCacheResponseMixin, ListAPIView): # 热销商品经常展示,添加缓存,所谓热销就是sales字段
@@ -44,4 +45,15 @@ class SKUListView(ListAPIView):
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         return SKU.objects.filter(category_id=category_id, is_launched=True)
+
+# 搜索的视图,使用haystack的视图集
+from drf_haystack.viewsets import HaystackViewSet
+
+class SKUSearchViewSet(HaystackViewSet):
+    """
+    SKU搜索
+    """
+    index_models = [SKU]
+
+    serializer_class = SKUIndexSerializer
 

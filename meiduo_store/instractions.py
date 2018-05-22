@@ -76,4 +76,6 @@ urllib模块
 8.CKEditor富文本编辑器
 9.页面静态化
 10.定时任务和手动执行脚本
+11.搜索引擎elasticsearch
+    使用haystack用接口的方式操作
 '''
