@@ -13,7 +13,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from users import serializers
+from goods.models import SKU
+from goods.serializers import SKUSerializer
+from users import serializers, constants
 from users.models import User
 
 # 判断用户名是否存在
@@ -270,6 +272,6 @@ class UserHistoryView(mixins.CreateModelMixin, GenericAPIView):
             sku = SKU.objects.get(id=sku_id)
             sku_list.append(sku)
 
-        # 使用序列化器序列化
+        # 使用序列化器序列化 使用的就是热销商品的序列化器
         serializer = SKUSerializer(sku_list, many=True)
         return Response(serializer.data)

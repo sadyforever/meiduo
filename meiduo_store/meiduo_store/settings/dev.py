@@ -196,11 +196,18 @@ CACHES = {
     },
     "verify_codes": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1/1",
+        "LOCATION": "redis://127.0.0.1/2",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-    }
+    },
+    "history": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1/3",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session"
@@ -349,7 +356,7 @@ QQ_STATE = '/'
 DEFAULT_FILE_STORAGE = 'meiduo_store.utils.fastdfs.storage.FastDFSStorage'
 
 # FastDFS
-FDFS_BASE_URL = 'http://192.168.103.44:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
+FDFS_BASE_URL = 'http://192.168.2.109:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
 FDFS_CLIENT_CONF = os.path.join(BASE_DIR, 'utils/fastdfs/client.conf')
 
 
