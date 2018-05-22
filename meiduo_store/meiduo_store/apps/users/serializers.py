@@ -4,6 +4,7 @@ from django_redis import get_redis_connection
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 
+from goods.models import SKU
 from users.models import User
 from users.utils import get_user_by_account
 
@@ -235,3 +236,48 @@ class EmailSerializer(serializers.ModelSerializer):
 
 
         return instance
+
+
+
+
+
+
+USER_BROWSING_HISTORY_COUNTS_LIMIT = 5
+
+
+class AddUserHistorySerializer(serializers.Serializer):
+    sku_id = serializers.IntegerField(min_value=1)
+
+    def validate_sku_id(self, value):
+        try:
+            SKU.objects.get(id=value)
+        except SKU.DoesNotExist:
+            raise serializers.ValidationError("sku id 不存在")
+        return value
+
+    def create(self, validated_data):
+        """保存"""
+        # user_id
+        user_id = self.context['request'].user.id
+        sku_id = validated_data['sku_id']
+
+        # 保存记录到redis中
+        redis_conn = get_redis_connection('history')
+
+        pl = redis_conn.pipeline()
+
+        # 清除sku_id在redis中的记录
+        # lrem(name, count, value)
+        pl.lrem('history_%s' % user_id, 0, sku_id)
+
+        # 向redis追加数据
+        # lpush  [1,2,3,4] 5   -> [5,1,2,3,4]
+        pl.lpush('history_%s' % user_id, sku_id)
+
+        # 如果超过数量，截断
+        # ltrim(name, start, end)
+        pl.ltrim('history_%s' % user_id, 0, USER_BROWSING_HISTORY_COUNTS_LIMIT-1)
+
+        pl.execute()
+
+        return validated_data

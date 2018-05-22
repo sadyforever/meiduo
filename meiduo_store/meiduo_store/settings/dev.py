@@ -349,7 +349,7 @@ QQ_STATE = '/'
 DEFAULT_FILE_STORAGE = 'meiduo_store.utils.fastdfs.storage.FastDFSStorage'
 
 # FastDFS
-FDFS_BASE_URL = 'http://192.168.2.109:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
+FDFS_BASE_URL = 'http://192.168.103.44:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
 FDFS_CLIENT_CONF = os.path.join(BASE_DIR, 'utils/fastdfs/client.conf')
 
 
