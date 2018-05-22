@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48c076f9-a91a-4eb4-a5a7-7f806c37d511" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/search_indexes.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/search/indexes/goods/sku_text.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static_files/search.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static_files/js/search.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/instractions.py" afterPath="$PROJECT_DIR$/meiduo_store/instractions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/serializers.py" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/urls.py" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/views.py" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/settings/dev.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/detail.html" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/index.html" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/list.html" afterPath="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static_files/index.html" afterPath="$PROJECT_DIR$/static_files/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static_files/list.html" afterPath="$PROJECT_DIR$/static_files/list.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -97,11 +86,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static_files/search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="271">
+              <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static_files/js/search.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="107">
+              <caret line="84" column="40" lean-forward="true" selection-start-line="84" selection-start-column="40" selection-end-line="84" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static_files/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -170,11 +179,11 @@
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/serializers.py" />
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/views.py" />
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/urls.py" />
-        <option value="$PROJECT_DIR$/static_files/index.html" />
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/index.html" />
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/detail.html" />
         <option value="$PROJECT_DIR$/meiduo_store/meiduo_store/templates/list.html" />
         <option value="$PROJECT_DIR$/static_files/list.html" />
+        <option value="$PROJECT_DIR$/static_files/index.html" />
       </list>
     </option>
   </component>
@@ -357,8 +366,8 @@
       <recent name="$PROJECT_DIR$/meiduo_store" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static_files" />
       <recent name="$PROJECT_DIR$/static_files/js" />
+      <recent name="$PROJECT_DIR$/static_files" />
       <recent name="$PROJECT_DIR$/meiduo_store/meiduo_store/templates" />
       <recent name="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/users" />
       <recent name="$PROJECT_DIR$/meiduo_store/meiduo_store/apps/contents" />
@@ -439,6 +448,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25734267" sideWeight="0.5028612" order="0" side_tool="true" content_ui="tabs" />
@@ -447,7 +457,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23076923" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32587412" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13733906" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13733906" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1702432" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -475,14 +485,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/meiduo_store/celery_tasks/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/meiduo_store/celery_tasks/email/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -828,14 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static_files/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="49" column="19" lean-forward="true" selection-start-line="45" selection-start-column="11" selection-end-line="49" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="452">
@@ -876,6 +870,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static_files/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/meiduo_store/meiduo_store/apps/goods/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -886,10 +888,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static_files/search.html">
+    <entry file="file://$PROJECT_DIR$/static_files/js/search.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="107">
+          <caret line="84" column="40" lean-forward="true" selection-start-line="84" selection-start-column="40" selection-end-line="84" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static_files/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
           <folding />
         </state>
       </provider>
