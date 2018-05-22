@@ -21,3 +21,27 @@ class HotSKUListView(ListCacheResponseMixin, ListAPIView): # 热销商品经常�
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         return SKU.objects.filter(category_id=category_id, is_launched=True).order_by('-sales')[:2] # 只返回两个数据
+
+
+
+
+
+# GET /categories/(?P<category_id>\d+)/skus?page=xxx&page_size=xxx&ordering=xxx
+# 商品list页数据
+from rest_framework.filters import OrderingFilter
+
+class SKUListView(ListAPIView):
+    """
+    sku列表数据
+    """
+    # 使用之前的序列化器字段可以满足,跟热销和浏览记录是同一个,看页面需要的内容
+    serializer_class = SKUSerializer
+    # 有序的过滤器,DRF中的
+    filter_backends = (OrderingFilter,)
+    # 过滤依据的字段
+    ordering_fields = ('create_time', 'price', 'sales')
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        return SKU.objects.filter(category_id=category_id, is_launched=True)
+

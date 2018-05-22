@@ -283,6 +283,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    # 分页
+    'DEFAULT_PAGINATION_CLASS': 'meiduo_store.utils.pagination.StandardResultsSetPagination',
 }
 # JWT_EXPIRATION_DELTA 指明token的有效期
 JWT_AUTH = {

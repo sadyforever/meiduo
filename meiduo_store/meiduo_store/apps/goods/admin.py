@@ -44,7 +44,22 @@ class SKUImageAdmin(admin.ModelAdmin):
         generate_static_sku_detail_html.delay(sku_id)
 
 
-admin.site.register(models.GoodsCategory)
+
+# 商品的类别三级索引,如果运维人员修改admin站点,保存的时候执行方法,生成新的静态页面
+class GoodsCategoryAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        obj.save()
+        from celery_tasks.html.tasks import generate_static_list_search_html
+        generate_static_list_search_html.delay()
+
+    def delete_model(self, request, obj):
+        sku_id = obj.sku.id
+        obj.delete()
+        from celery_tasks.html.tasks import generate_static_list_search_html
+        generate_static_list_search_html.delay()
+
+
+admin.site.register(models.GoodsCategory,GoodsCategoryAdmin) # 别忘了admin站点添加自定义功能需要注册
 admin.site.register(models.GoodsChannel)
 admin.site.register(models.Goods)
 admin.site.register(models.Brand)
