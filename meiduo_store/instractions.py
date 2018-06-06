@@ -91,8 +91,30 @@ urllib模块
         base64.b64decode  解码
 14.数据库同时操作:
 事务问题:(一个函数中操作多个数据库表)
-并发问题:(多个用户同时访问,库存不足)
-
+    如果前边的成功,但是后边的没成功,需要回滚,这就需要把这个函数中的所有数据库操作放到一个事务中
     
+django内置的事务:
+方法一:装饰器
+@transaction.atomic     
+def viewfunc(request):   函数内所有数据库操作在一个事务中
+方法二:with
+def viewfunc(request):
+    # 这部分代码不在事务中，会被Django自动提交
+    with transaction.atomic():
+        # 这部分代码会在事务中执行
+        
+保存点与回滚:
+# 创建保存点
+save_id = transaction.savepoint()  
+# 回滚到保存点
+transaction.savepoint_rollback(save_id)
+# 提交从保存点到当前状态的所有数据库事务操作
+transaction.savepoint_commit(save_id)
+
+
+并发问题:(多个用户同时访问,资源竞争库存不足)
+悲观锁:有用户信息正在操作数据库,则锁住,别人无法再操作,容易锁死
+乐观锁:虚拟锁,当更改数据的时候,在进行一次查询,和之前查询的结果比较,如果不同说明被修改过有人抢过资源,当前不能更改
+任务队列:celery的worker是不断从任务队列 中拿出任务来依次执行
 
 '''
