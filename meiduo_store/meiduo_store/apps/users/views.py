@@ -15,6 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
+from carts.utils import merge_cart_cookie_to_redis
 from goods.models import SKU
 from goods.serializers import SKUSerializer
 from users import serializers, constants
@@ -72,6 +73,28 @@ class UserView(CreateAPIView):
 # 登录
 # 居然不需要写视图
 # 点进去路由看一下,就是有个默认的视图
+# 添加了合并购物车的逻辑,所以重写了,把方法加进去
+from rest_framework_jwt.views import ObtainJSONWebToken
+
+class UserAuthorizationView(ObtainJSONWebToken):
+
+    def post(self, request,*args,**kwargs):
+        # 调用jwt扩展的方法，对用户登录的数据进行验证
+        response = super().post(request)
+
+        # 如果用户登录成功，进行购物车数据合并
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            # 表示用户登录成功
+            user = serializer.validated_data.get("user")
+            # 合并购物车
+            response = merge_cart_cookie_to_redis(request, response, user)
+
+        return response
+
+
+
+
 
 # 忘记密码第一步
 class SMSCodeTokenView(GenericAPIView):
