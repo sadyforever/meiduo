@@ -21,3 +21,28 @@ class CartSerializer(serializers.Serializer):
             raise serializers.ValidationError('商品库存不足')
 
         return data
+
+
+class CartSKUSerializer(serializers.ModelSerializer):
+    """
+    购物车商品数据序列化器
+    """
+    count = serializers.IntegerField(label='数量')
+    selected = serializers.BooleanField(label='是否勾选')
+
+    class Meta:
+        model = SKU
+        fields = ('id', 'count', 'name', 'default_image_url', 'price', 'selected')
+
+
+class CartDeleteSerializer(serializers.Serializer):
+    sku_id = serializers.IntegerField(min_value=1)
+
+    def validate_sku_id(self, value):
+        try:
+            sku = SKU.objects.get(id=value)
+        except SKU.DoesNotExist:
+            raise serializers.ValidationError('商品不存在')
+
+
+        return value

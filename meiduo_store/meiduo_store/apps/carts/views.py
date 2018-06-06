@@ -5,10 +5,12 @@ from django.shortcuts import render
 
 # Create your views here.
 from django_redis import get_redis_connection
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from carts.serializer import CartSerializer
+from carts.serializer import CartSerializer, CartSKUSerializer, CartDeleteSerializer
+from goods.models import SKU
 
 
 class CartView(APIView):
@@ -76,6 +78,129 @@ class CartView(APIView):
             }
 
             response = Response(serializer.data)
-            # 
+            #
             response.set_cookie('cart', base64.b64encode(pickle.dumps(cart)).decode())
+            return response
+
+    def get(self, request):
+        """
+        获取购物车
+        """
+        try:
+            user = request.user
+        except Exception:
+            user = None
+
+        if user is not None and user.is_authenticated:
+            # 用户已登录，从redis中读取
+            redis_conn = get_redis_connection('cart')
+            redis_cart = redis_conn.hgetall('cart_%s' % user.id)
+            redis_cart_selected = redis_conn.smembers('cart_selected_%s' % user.id)
+            cart = {}
+            for key, val in redis_cart.items():
+                cart[int(key)] = {
+                    'count': int(val),
+                    'selected': key in redis_cart_selected
+                }
+        else:
+            # 用户未登录，从cookie中读取
+            cart = request.COOKIES.get('cart')
+            if cart is not None:
+                cart = pickle.loads(base64.b64decode(cart.encode()))
+            else:
+                cart = {}
+
+        # 遍历处理购物车数据
+        # 如果用户未登录并且购物车有数据
+        # cart.keys 是拿出 sku_id 的列表  看一下cookie中保存的格式
+        # 从sku的表中去查详细信息,得到sku商品列表
+        # 但是数量和勾选状态并不是sku原表中的
+        # 重新赋值 数量是购物车中的数量
+        # 然后传给序列化器检验,因为用了模型类的序列化器
+        skus = SKU.objects.filter(id__in=cart.keys())
+        for sku in skus:
+            sku.count = cart[sku.id]['count']
+            sku.selected = cart[sku.id]['selected']
+
+        serializer = CartSKUSerializer(skus, many=True)
+        return Response(serializer.data)
+
+    def put(self, request):
+        """
+        修改购物车数据
+        """
+        serializer = CartSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        sku_id = serializer.data.get('sku_id')
+        count = serializer.data.get('count')
+        selected = serializer.data.get('selected')
+
+        # 尝试对请求的用户进行验证
+        try:
+            user = request.user
+        except Exception:
+            # 验证失败，用户未登录
+            user = None
+
+        if user is not None and user.is_authenticated:
+            # 用户已登录，在redis中保存
+            redis_conn = get_redis_connection('cart')
+            pl = redis_conn.pipeline()
+            pl.hset('cart_%s' % user.id, sku_id, count)
+            if selected:
+                pl.sadd('cart_selected_%s' % user.id, sku_id)
+            else:
+                pl.srem('cart_selected_%s' % user.id, sku_id)
+            pl.execute()
+            return Response(serializer.data)
+        else:
+            # 用户未登录，在cookie中保存
+            # 使用pickle序列化购物车数据，pickle操作的是bytes类型
+            cart = request.COOKIES.get('cart')
+            if cart is not None:
+                cart = pickle.loads(base64.b64decode(cart.encode()))
+            else:
+                cart = {}
+
+            cart[sku_id] = {
+                'count': count,
+                'selected': selected
+            }
+            response = Response(serializer.data)
+            response.set_cookie('cart', base64.b64encode(pickle.dumps(cart)).decode())
+            return response
+
+    def delete(self, request):
+        """
+        删除购物车数据
+        """
+        serializer = CartDeleteSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        sku_id = serializer.data['sku_id']
+
+        try:
+            user = request.user
+        except Exception:
+            # 验证失败，用户未登录
+            user = None
+
+        if user is not None and user.is_authenticated:
+            # 用户已登录，在redis中保存
+            redis_conn = get_redis_connection('cart')
+            pl = redis_conn.pipeline()
+            pl.hdel('cart_%s' % user.id, sku_id)
+            pl.srem('cart_selected_%s' % user.id, sku_id)
+            pl.execute()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            # 用户未登录，在cookie中保存
+            response = Response(status=status.HTTP_204_NO_CONTENT)
+
+            # 使用pickle序列化购物车数据，pickle操作的是bytes类型
+            cart = request.COOKIES.get('cart')
+            if cart is not None:
+                cart = pickle.loads(base64.b64decode(cart.encode()))
+                if sku_id in cart:
+                    del cart[sku_id]
+                    response.set_cookie('cart', base64.b64encode(pickle.dumps(cart)).decode())
             return response

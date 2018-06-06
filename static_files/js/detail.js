@@ -93,13 +93,28 @@ var vm = new Vue({
                     this.cart_total_count += response.data.count;
                 })
                 .catch(error => {
-                    alert(error.response.message[0]);
+                    // alert(error.response.message[0]);
                     console.log(error.response.data);
                 })
         },
         // 获取购物车数据
         get_cart: function(){
-
+            axios.get(this.host+'/cart/', {
+                headers: {
+                    'Authorization': 'JWT ' + this.token
+                },
+                responseType: 'json',
+                withCredentials: true
+            })
+            .then(response => {
+                this.cart = response.data;
+                for(var i=0; i<this.cart.length; i++){
+                    this.cart[i].amount = (parseFloat(this.cart[i].price) * this.cart[i].count).toFixed(2);
+                }
+            })
+            .catch(error => {
+                console.log(error.response.data);
+            })
         },
          // 获取热销商品数据
         get_hot_goods: function(){
