@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'areas.apps.AreasConfig',
     'goods.apps.GoodsConfig',
     'contents.apps.ContentsConfig',
+    'carts.apps.CartsConfig',
 
 
 
@@ -81,7 +82,7 @@ CRONJOBS = [
     ('*/5 * * * *', 'contents.crons.generate_static_index_html', '>> /Users/sady/Desktop/meiduo/meiduo_store/logs/crontab.log')
 ]
 # 解决crontab中文问题
-CRONTAB_COMMAND_PREFIX = 'LANG=zh_cn.UTF-8'
+CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 
 
 

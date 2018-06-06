@@ -20,6 +20,7 @@ import areas.urls
 import oauth.urls
 import users.urls
 import verifications.urls
+import carts.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,4 +30,5 @@ urlpatterns = [
     url(r'oauth/', include('oauth.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^',include('goods.urls')),
+    url(r'^',include('carts.urls'))
 ]

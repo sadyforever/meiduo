@@ -8,10 +8,12 @@ from django.shortcuts import render
 # 判断用户名或手机是否存在
 from django_redis import get_redis_connection
 from rest_framework import status, mixins
+from rest_framework.decorators import action
 from rest_framework.generics import CreateAPIView, GenericAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
 
 from goods.models import SKU
 from goods.serializers import SKUSerializer
@@ -69,7 +71,7 @@ class UserView(CreateAPIView):
 
 # 登录
 # 居然不需要写视图
-
+# 点进去路由看一下,就是有个默认的视图
 
 # 忘记密码第一步
 class SMSCodeTokenView(GenericAPIView):
@@ -275,3 +277,82 @@ class UserHistoryView(mixins.CreateModelMixin, GenericAPIView):
         # 使用序列化器序列化 使用的就是热销商品的序列化器
         serializer = SKUSerializer(sku_list, many=True)
         return Response(serializer.data)
+
+
+# 用户收货地址
+# post /addresses/
+# class UserAddressesView(GenericAPIView):   我觉得是有增删改查应该用视图集
+class AddressViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, GenericViewSet):
+    """
+    用户地址新增与修改
+    """
+    serializer_class = serializers.UserAddressSerializer
+    permissions = [IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        """
+        保存用户地址数据
+        """
+        # 检查用户地址数据数目不能超过上限
+        count = request.user.addresses.count()
+        if count >= constants.USER_ADDRESS_COUNTS_LIMIT:
+            return Response({'message': '保存地址数据已达到上限'}, status=status.HTTP_400_BAD_REQUEST)
+
+        return super().create(request, *args, **kwargs)
+
+
+
+
+    def get_queryset(self):
+        return self.request.user.addresses.filter(is_deleted=False)
+
+    def list(self, request, *args, **kwargs):
+        """
+        用户地址列表数据
+        """
+        queryset = self.get_queryset()
+        serializer = serializers.UserAddressSerializer(queryset, many=True)
+        user = self.request.user
+        return Response({
+            'user_id': user.id,
+            'default_address_id': user.default_address_id,
+            'limit': constants.USER_ADDRESS_COUNTS_LIMIT,
+            'addresses': serializer.data,
+        })
+
+
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        处理删除
+        """
+        address = self.get_object()
+
+        # 进行逻辑删除
+        address.is_deleted = True
+        address.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['put'], detail=True)
+    def status(self, request, pk=None, address_id=None):
+        """
+        设置默认地址
+        """
+        address = self.get_object()
+        request.user.default_address = address
+        request.user.save()
+        return Response({'message': 'OK'}, status=status.HTTP_200_OK)
+
+    @action(methods=['put'], detail=True)
+    def title(self, request, pk=None, address_id=None):
+        """
+        修改标题
+        """
+        address = self.get_object()
+        serializer = serializers.AddressTitleSerializer(instance=address, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
