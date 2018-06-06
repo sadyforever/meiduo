@@ -117,4 +117,11 @@ transaction.savepoint_commit(save_id)
 乐观锁:虚拟锁,当更改数据的时候,在进行一次查询,和之前查询的结果比较,如果不同说明被修改过有人抢过资源,当前不能更改
 任务队列:celery的worker是不断从任务队列 中拿出任务来依次执行
 
+15.支付
+公钥加密,私钥解密  使用openssl命令
+终端输入openssl
+生成私钥: genrsa -out app_private_key.pem 2048  # 私钥RSA2
+生成配对公钥: rsa -in app_private_key.pem -pubout -out app_public_key.pem # 导出公钥
+
+
 '''
