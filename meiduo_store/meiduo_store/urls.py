@@ -22,6 +22,7 @@ import users.urls
 import verifications.urls
 import carts.urls
 import orders.urls
+import payment.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
